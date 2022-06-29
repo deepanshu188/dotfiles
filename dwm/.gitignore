@@ -1,0 +1,4 @@
+config.def.h.rej
+dwm.c.rej
+*.o
+.!gitignore
