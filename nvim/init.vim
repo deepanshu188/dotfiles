@@ -1,18 +1,47 @@
+" STATUS LINE ------------------------------------------------------------ {{{
+
+" Clear status line when vimrc is reloaded.
+set statusline=
+
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
+
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
+
+" }}}
+
 let g:prettier#quickfix_enabled = 0
 let g:prettier#config#tab_width = 2
 let g:prettier#config#use_tabs = 1
 
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 
-colorscheme molokai
+colorscheme happy_hacking
+"colorscheme afterglow
+"colorscheme onehalfdark
+"colorscheme molokai
 syntax on
+filetype plugin indent on
 
 " netrw configs
+
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 3
 let g:netrw_altv = 1
-let g:netrw_winsize = 80
+let g:netrw_winsize = 75
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+" clipboard
+set clipboard+=unnamedplus
 
 call plug#begin()
 " The default plugin directory will be as follows:
@@ -35,7 +64,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-default branch
@@ -70,6 +98,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " COC eslint
 Plug 'neoclide/coc-eslint'
+
+" Typescript VIM
+Plug 'leafgarland/typescript-vim'
+
+" Typescript JSX
+Plug 'peitalin/vim-jsx-typescript'
+
+" Fugitive git
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
