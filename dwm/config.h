@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -68,7 +69,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *power[]    = { ".dwm/scripts/powermenu.sh" , NULL};
-static const char *vivaldi[]  = { "vivaldi-stable", "--disable-gpu", NULL};
+static const char *vivaldi[]  = { "vivaldi-snapshot", "--disable-gpu", NULL};
 static const char *upvol[]    = { "amixer", "set", "Master", "5%+", NULL};
 static const char *downvol[]  = { "amixer", "set", "Master", "5%-", NULL};
 static const char *mutevol[]  = { "amixer", "set", "Master", "toggle", NULL};
@@ -105,11 +106,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,			XK_F12,	   spawn, 	   {.v = upvol } },
-	{ MODKEY,			XK_F11,    spawn,          {.v = downvol} },
-	{ MODKEY,			XK_F10,    spawn,	   {.v = mutevol } },
-	{ MODKEY,			XK_F6,	   spawn,	   {.v = brightnessup} },
-	{ MODKEY,			XK_F5,	   spawn,	   {.v = brightnessdown} },
+	{ 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
+	{ 0,				XF86XK_AudioLowerVolume, spawn, {.v = downvol} },
+	{ 0,				XF86XK_AudioMute, spawn,   {.v = mutevol } },
+	{ 0,				XF86XK_MonBrightnessUp,	spawn, {.v = brightnessup} },
+	{ 0,				XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
