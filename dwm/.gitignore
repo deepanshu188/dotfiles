@@ -1,4 +1,5 @@
 config.def.h.rej
 dwm.c.rej
+config.h
 *.o
 .!gitignore
