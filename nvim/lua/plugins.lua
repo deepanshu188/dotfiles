@@ -15,6 +15,8 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
+  use "rafamadriz/friendly-snippets"
 
   -- commenting
   use 'numToStr/Comment.nvim'
@@ -40,12 +42,6 @@ return require('packer').startup(function()
   
   use 'andweeb/presence.nvim'   -- discord rich presence
 
-  require 'colorizer'.setup {
-    '*'; -- Highlight all files, but customize some others.
-    css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
-    html = { names = false; } -- Disable parsing "names" like Blue or Gray
-  }
-
   -- javascript  
   use { 'HerringtonDarkholme/yats.vim', ft = 'typescript' }
   use 'othree/javascript-libraries-syntax.vim'
@@ -53,7 +49,10 @@ return require('packer').startup(function()
   --use 'epilande/vim-react-snippets' -- React snippets
   --use 'mlaursen/vim-react-snippets' -- React snippets
   use 'SirVer/ultisnips' -- Ultisnips
-  use 'neoclide/vim-jsx-improve' -- JSX highlight
+  use 'maxmellon/vim-jsx-pretty' -- JSX Highlight
+  use {'prettier/vim-prettier',
+    run = 'yarn install',
+  } -- prettier
 
   --rust
   use 'rust-lang/rust.vim'
