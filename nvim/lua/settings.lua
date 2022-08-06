@@ -1,26 +1,21 @@
 HOME = os.getenv("HOME") 
 
--- Keybinding function
-function map(mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
-end
+-- config prettier
 
-function nmap(shortcut, command)
-  map('n', shortcut, command)
-end
+vim.cmd [[
+let g:prettier#quickfix_enabled = 0
+let g:prettier#config#tab_width = 2
+let g:prettier#config#use_tabs = 1
+]]
 
--- telescope bindings
-nmap("<leader>ff", ":Telescope find_files<cr>")
-nmap("<leader>fg", ":Telescope live_grep<cr>")
+vim.g.rustfmt_autosave = 1  -- RustFmt
 
 vim.g.used_javascript_libs = 'react'
-vim.o.termguicolors = true
+--vim.o.termguicolors = true
 
+-- airline theme
 vim.g.airline_theme='sobrio'
 vim.g.airline_powerline_fonts = 1
-
-vim.g.mapleader = ','
-vim.g.maplocalleader = '\\'
 
 -- basic settings
 vim.o.encoding = "utf-8"
@@ -105,11 +100,14 @@ vim.cmd([[
   augroup END
 ]])
 
-vim.o.background = 'dark'
+-- Colorschemes
+
+--vim.o.background = 'dark'
 --vim.cmd('colorscheme Tomorrow-Night')
 --vim.g.material_style = "palenight"
-vim.cmd('colorscheme sobrio')
---vim.cmd[[colorscheme tokyonight]]
+--vim.cmd('colorscheme sobrio')
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+vim.cmd[[colorscheme tokyonight]]
 
 --vim.g.python3_host_prog = '/usr/bin/python3'
-

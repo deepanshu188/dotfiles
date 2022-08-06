@@ -4,7 +4,7 @@ require'nvim-treesitter.configs'.setup {
       disable = { "ruby" }
     },
     context_commentstring = {
-      enable = true,
-      enable_autocmd = false
-    },
+        enable = true,
+        enable_autocmd = false,
+      },    
   }

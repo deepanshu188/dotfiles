@@ -1,22 +1,46 @@
 local cmp = require'cmp'
+local luasnip = require('luasnip')
 
   cmp.setup({
-mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
-       { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
+    mapping = cmp.mapping.preset.insert({
+          ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end,
+          ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end,
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<Esc>'] = cmp.mapping.close(),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        }),
+
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
+        { name = "luasnip" },
+    },
+   completion = {
+      keyword_length = 1,
+      completeopt = "menu,noselect"
+    },
+
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end
+    },
+
   })
 
   -- Set configuration for specific filetype.
@@ -46,20 +70,41 @@ mapping = cmp.mapping.preset.insert({
     })
   })
 
+  -- luasnip
+  require('luasnip.loaders.from_vscode').lazy_load()
+--  require("luasnip.loaders.from_snipmate").lazy_load()
+
+--  luasnip.filetype_extend("javascript", {"javascriptreact"})
+--  luasnip.filetype_extend("typescript", {"typescriptreact"})
+--  luasnip.filetype_extend("javascript", { "html" })
+  
+--  require("luasnip.loaders.from_vscode").lazy_load { paths = { "../snippets/typescript" } }
+--  luasnip.filetype_extend("all", { "_" })
+
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
-require('lspconfig')['tsserver'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+  require('lspconfig')['tsserver'].setup{
+      root_dir = require'lspconfig'.util.root_pattern("yarn.lock", "package.json", ".git", "tsconfig.json", "jsconfig.json", "**.js", "**.ts"), 
+      on_attach = on_attach,
+      flags = lsp_flags,
+  }
 
-require('lspconfig')['rust_analyzer'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
-    }
-}
+  require'lspconfig'.cssls.setup {
+    root_dir = require'lspconfig'.util.root_pattern("yarn.lock", "package.json", ".git", "**.css"), 
+    capabilities = capabilities,
+  }
+ 
+  require'lspconfig'.html.setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['rust_analyzer'].setup{
+      on_attach = on_attach,
+      flags = lsp_flags,
+     -- Server-specific settings...
+     settings = {
+        ["rust-analyzer"] = {}
+      }
+  }
