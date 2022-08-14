@@ -10,7 +10,7 @@ function run {
 
 # Network Manager
 #
-nm-applet &
+nm-applet --indicator &
 
 # Notifications
 #
@@ -18,12 +18,12 @@ nm-applet &
 
 # Compositor
 #
-#picom --experimental-backends &
+picom --experimental-backends &
 
 # Background wallpaper
 #
-feh --bg-scale ~/Pictures/wallhaven-136x99.jpg
-
+feh --bg-fill ~/Pictures/pexels-benni-fish-9468358.jpg
+# feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 # Low Battery Notifier
 #
 ~/.dwm/scripts/low_bat_notifier.sh &
@@ -34,8 +34,8 @@ feh --bg-scale ~/Pictures/wallhaven-136x99.jpg
 
 # Statusbar utils
 #
-.cargo/bin/rsblocks &
-#dwmblocks &
+# .cargo/bin/rsblocks &
+slstatus &
 
 # Easyeffects
 #
