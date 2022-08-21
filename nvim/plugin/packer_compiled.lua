@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/cmp-path",
@@ -109,10 +114,26 @@ _G.packer_plugins = {
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["git-conflict.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17git-conflict\frequire\0" },
+    loaded = true,
+    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/git-conflict.nvim",
+    url = "https://github.com/akinsho/git-conflict.nvim"
+  },
   ["javascript-libraries-syntax.vim"] = {
     loaded = true,
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/javascript-libraries-syntax.vim",
     url = "https://github.com/othree/javascript-libraries-syntax.vim"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -184,11 +205,6 @@ _G.packer_plugins = {
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ultisnips = {
-    loaded = true,
-    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/ultisnips",
-    url = "https://github.com/SirVer/ultisnips"
-  },
   ["vim-airline"] = {
     loaded = true,
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/vim-airline",
@@ -199,11 +215,6 @@ _G.packer_plugins = {
     path = "/home/zexu/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
     url = "https://github.com/vim-airline/vim-airline-themes"
   },
-  ["vim-es2015-snippets"] = {
-    loaded = true,
-    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/vim-es2015-snippets",
-    url = "https://github.com/epilande/vim-es2015-snippets"
-  },
   ["vim-fugitive"] = {
     commands = { "G", "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gsplit", "Gread", "Gwrite", "Ggrep", "Glgrep", "Gmove", "Gdelete", "Gremove", "Gbrowse" },
     loaded = false,
@@ -211,11 +222,6 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/zexu/.local/share/nvim/site/pack/packer/opt/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-jsx-pretty"] = {
-    loaded = true,
-    path = "/home/zexu/.local/share/nvim/site/pack/packer/start/vim-jsx-pretty",
-    url = "https://github.com/maxmellon/vim-jsx-pretty"
   },
   ["vim-prettier"] = {
     loaded = true,
@@ -232,9 +238,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: git-conflict.nvim
+time([[Config for git-conflict.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17git-conflict\frequire\0", "config", "git-conflict.nvim")
+time([[Config for git-conflict.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gbrowse lua require("packer.load")({'vim-fugitive'}, { cmd = "Gbrowse", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Git lua require("packer.load")({'vim-fugitive'}, { cmd = "Git", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gdiffsplit lua require("packer.load")({'vim-fugitive'}, { cmd = "Gdiffsplit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
@@ -246,9 +257,8 @@ pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gwrite lua require
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Ggrep lua require("packer.load")({'vim-fugitive'}, { cmd = "Ggrep", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Glgrep lua require("packer.load")({'vim-fugitive'}, { cmd = "Glgrep", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gmove lua require("packer.load")({'vim-fugitive'}, { cmd = "Gmove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gdelete lua require("packer.load")({'vim-fugitive'}, { cmd = "Gdelete", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gremove lua require("packer.load")({'vim-fugitive'}, { cmd = "Gremove", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gbrowse lua require("packer.load")({'vim-fugitive'}, { cmd = "Gbrowse", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Gdelete lua require("packer.load")({'vim-fugitive'}, { cmd = "Gdelete", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
