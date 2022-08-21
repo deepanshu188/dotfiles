@@ -2,14 +2,16 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- theme
-  use 'folke/tokyonight.nvim' 
-  
+  use 'folke/tokyonight.nvim'
+
   -- lsp 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use 'jose-elias-alvarez/null-ls.nvim'
 
     --cmp
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
@@ -20,7 +22,7 @@ return require('packer').startup(function()
 
   -- commenting
   use 'numToStr/Comment.nvim'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'  
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Git command
   use {
@@ -33,26 +35,34 @@ return require('packer').startup(function()
     },
   }
 
+  use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+    require('git-conflict').setup()
+  end}
+
+
   -- common
 
   use 'vim-airline/vim-airline' -- powerline
   use 'vim-airline/vim-airline-themes'
   use 'norcalli/nvim-colorizer.lua' -- colorizer
 --  use {'neoclide/coc.nvim', branch = 'release'}
-  
+
   use 'andweeb/presence.nvim'   -- discord rich presence
 
   -- javascript  
   use { 'HerringtonDarkholme/yats.vim', ft = 'typescript' }
   use 'othree/javascript-libraries-syntax.vim'
-  use 'epilande/vim-es2015-snippets' -- Es6 snippets
+  --use 'epilande/vim-es2015-snippets' -- Es6 snippets
   --use 'epilande/vim-react-snippets' -- React snippets
   --use 'mlaursen/vim-react-snippets' -- React snippets
-  use 'SirVer/ultisnips' -- Ultisnips
-  use 'maxmellon/vim-jsx-pretty' -- JSX Highlight
+  --use 'SirVer/ultisnips' -- Ultisnips
+  --[[ use 'maxmellon/vim-jsx-pretty' -- JSX Highlight ]]
   use {'prettier/vim-prettier',
     run = 'yarn install',
   } -- prettier
+
+  use { "windwp/nvim-autopairs" }  -- autopairs
+
 
   --rust
   use 'rust-lang/rust.vim'
@@ -74,6 +84,8 @@ use {
 }
 
   -- treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+     use {
+       'nvim-treesitter/nvim-treesitter'
+   }
 
 end)
