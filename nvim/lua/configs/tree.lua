@@ -1,5 +1,6 @@
 require("nvim-tree").setup({
-update_cwd = true,
+
+  update_cwd = true,
 open_on_setup = true,
 open_on_setup_file = true,
 actions = {
@@ -8,8 +9,9 @@ resize_window = true,
 },
 },
 view = {
-side = "left",
-},
+    width = 30,
+    side = "right",
+    },
 update_focused_file = {
 enable = true,
 update_cwd = true,
@@ -21,6 +23,6 @@ git = {
   enable = true,
   ignore = false,
   timeout = 500,
-},
+  },
 }
 )

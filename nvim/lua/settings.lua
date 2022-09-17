@@ -1,4 +1,4 @@
-HOME = os.getenv("HOME") 
+HOME = os.getenv("HOME")
 
 -- config prettier
 
@@ -6,12 +6,15 @@ vim.cmd [[
 let g:prettier#quickfix_enabled = 0
 let g:prettier#config#tab_width = 2
 let g:prettier#config#use_tabs = 1
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 ]]
 
 vim.g.rustfmt_autosave = 1  -- RustFmt
 
 vim.g.used_javascript_libs = 'react'
---vim.o.termguicolors = true
+vim.o.termguicolors = true
 
 -- airline theme
 vim.g.airline_theme='sobrio'
@@ -103,11 +106,9 @@ vim.cmd([[
 -- Colorschemes
 
 --vim.o.background = 'dark'
---vim.cmd('colorscheme Tomorrow-Night')
 --vim.g.material_style = "palenight"
---vim.cmd('colorscheme sobrio')
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-vim.cmd[[colorscheme tokyonight]]
-
+vim.cmd[[colorscheme sobrio]]
+--[[ vim.g.tokyonight_style = "night" ]]
+--[[ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" } ]]
+--vim.cmd[[colorscheme tokyonight]]
 --vim.g.python3_host_prog = '/usr/bin/python3'

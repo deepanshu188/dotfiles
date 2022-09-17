@@ -1,6 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
+#define PrintScreenDWM	    0x0000ff61
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gaps between windows */
@@ -38,7 +40,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",        1 << 8,         True,     -1 },
+	{ "Microsoft Teams - Preview",     NULL,       "Microsoft Teams Notification",        0,         True,     -1 },
 };
 
 /* layout(s) */
@@ -68,6 +70,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
+static const char *screenshot[] = { ".dwm/scripts/screenshot.sh", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *power[]    = { ".dwm/scripts/powermenu.sh" , NULL};
 static const char *vivaldi[]  = { "vivaldi-snapshot", NULL};
@@ -79,10 +82,11 @@ static const char *brightnessdown[] = {"brightnessctl", "set", "5%-", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,		        XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,		        XK_p, 	   spawn,	   {.v =  power } },
-	{ MODKEY,			XK_v,	   spawn,	   {.v = vivaldi } },
+	{ MODKEY,		                    XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,             		      XK_Return, spawn,          {.v = termcmd } },
+  { MODKEY,             		      PrintScreenDWM,  spawn,          {.v = screenshot } },
+	{ MODKEY,		                    XK_p, 	   spawn,	         {.v =  power } },
+	{ MODKEY,			                  XK_v,	     spawn,	         {.v = vivaldi } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -92,7 +96,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             		XK_q,      killclient,     {0} },
+	{ MODKEY,             		      XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
