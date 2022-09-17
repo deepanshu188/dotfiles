@@ -20,3 +20,4 @@ keymap('n', 'cb', '<Plug>(git-conflict-both)')
 keymap('n', 'c0', '<Plug>(git-conflict-none)')
 keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
 keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
+

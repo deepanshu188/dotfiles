@@ -18,11 +18,11 @@ nm-applet --indicator &
 
 # Compositor
 #
-picom --experimental-backends &
+# picom --experimental-backends &
 
 # Background wallpaper
 #
-feh --bg-fill ~/Pictures/pexels-benni-fish-9468358.jpg
+feh --bg-fill ~/Pictures/Akatsuki.jpg
 # feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 # Low Battery Notifier
 #

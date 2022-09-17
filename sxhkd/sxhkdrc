@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-	~/.config/polybar/forest/scripts/launcher.sh
+	~/.config/rofi/scripts/launcher_t7
 
 # show open window
 super + ctrl + d
@@ -24,7 +24,7 @@ super + shift + d
 
 # power-menu 
 super + shift + e
-     ~/.config/polybar/forest/scripts/powermenu.sh
+     ~/.config/rofi/scripts/powermenu_t1
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -33,6 +33,10 @@ super + Escape
 #
 # bspwm hotkeys
 #
+
+# polybar restart
+super + shift + p
+ pkill -USR1 polybar
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -173,7 +177,7 @@ Print
   scrot ~/Pictures/Screenshot-$(date +%F_%T).png
 
 super + Print
-  ~/.config/bspwm/scripts/screenshot.sh
+  ~/.config/rofi/applets/bin/screenshot.sh
 
 # Shortcuts
 super + w 

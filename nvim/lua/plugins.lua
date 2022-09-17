@@ -3,6 +3,8 @@ return require('packer').startup(function()
 
   -- theme
   use 'folke/tokyonight.nvim'
+  use 'ellisonleao/gruvbox.nvim'
+  use 'elvessousa/sobrio'
 
   -- lsp 
   use 'neovim/nvim-lspconfig'
@@ -24,7 +26,7 @@ return require('packer').startup(function()
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  -- Git command
+  -- Git plugings
   use {
     "tpope/vim-fugitive",
     opt = true,
@@ -39,6 +41,9 @@ return require('packer').startup(function()
     require('git-conflict').setup()
   end}
 
+  use {
+    'lewis6991/gitsigns.nvim',
+  }
 
   -- common
 
@@ -62,7 +67,6 @@ return require('packer').startup(function()
   } -- prettier
 
   use { "windwp/nvim-autopairs" }  -- autopairs
-
 
   --rust
   use 'rust-lang/rust.vim'
