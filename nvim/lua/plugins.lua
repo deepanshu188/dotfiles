@@ -105,7 +105,7 @@ use {
   'windwp/nvim-autopairs',
    after = 'nvim-cmp',
    config = function ()
-      require 'configs.autopairs'
+      require'configs.autopairs'
    end
 }
 

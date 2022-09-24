@@ -1,9 +1,5 @@
-  local present1, npairs = pcall(require, "nvim-autopairs")
-  local present2, cmp = pcall(require, "cmp")
-
-  if (present1 and present2) then
-    return
-  end
+local npairs = require('nvim-autopairs')
+local cmp = require('cmp')
 
 npairs.setup({
   check_ts = true,
