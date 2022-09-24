@@ -2,8 +2,8 @@ local keymap = vim.keymap.set
 local silent = { silent = true }
 
 -- Telescope
-keymap("n", "<C-f>", ":Telescope find_files<cr>")
-keymap("n", "<C-w>", ":Telescope live_grep<cr>")
+keymap("n", "<leader>ff", "<cmd> Telescope find_files <CR>")
+keymap("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 
 -- Save file by CTRL-S
 keymap("n", "<C-s>", ":w<CR>", silent)
@@ -21,3 +21,5 @@ keymap('n', 'c0', '<Plug>(git-conflict-none)')
 keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
 keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
 
+-- tree
+keymap('n', "<C-n>", "<cmd> NvimTreeToggle <CR>")

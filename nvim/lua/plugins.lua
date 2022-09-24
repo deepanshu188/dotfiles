@@ -1,4 +1,10 @@
-return require('packer').startup(function()
+local present, packer = pcall(require, "packer")
+
+if not present then
+  return
+end
+
+return packer.startup(function()
   use 'wbthomason/packer.nvim'
 
   -- theme
@@ -7,89 +13,109 @@ return require('packer').startup(function()
   use 'elvessousa/sobrio'
 
   -- lsp 
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
+  use { "williamboman/mason.nvim" }
   use 'jose-elias-alvarez/null-ls.nvim'
 
     --cmp
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
-  use "rafamadriz/friendly-snippets"
+  use {'hrsh7th/nvim-cmp',
+    event = 'VimEnter',
+    requires= {
+      {'hrsh7th/cmp-buffer', after='nvim-cmp'},
+      {'hrsh7th/cmp-cmdline', after='nvim-cmp'},
+      {'hrsh7th/cmp-path',  after='nvim-cmp'},
+      {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'},
+      {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'},
+    },
+    config = function()
+      require'configs.cmp'
+    end
+  }
+
+   use {'L3MON4D3/LuaSnip'}
+   use {'hrsh7th/cmp-nvim-lsp'}
+   use {'rafamadriz/friendly-snippets'}
+
+ use 'neovim/nvim-lspconfig'   --lspconfig
 
   -- commenting
   use 'numToStr/Comment.nvim'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  -- Git plugings
-  use {
-    "tpope/vim-fugitive",
-    opt = true,
-    cmd = {
-      "G", "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gsplit",
-      "Gread", "Gwrite", "Ggrep", "Glgrep", "Gmove",
-      "Gdelete", "Gremove", "Gbrowse",
-    },
-  }
+  -- Git plugins
 
   use {'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
   end}
 
-  use {
-    'lewis6991/gitsigns.nvim',
-  }
+  use 'lewis6991/gitsigns.nvim'
 
   -- common
 
   use 'vim-airline/vim-airline' -- powerline
   use 'vim-airline/vim-airline-themes'
   use 'norcalli/nvim-colorizer.lua' -- colorizer
---  use {'neoclide/coc.nvim', branch = 'release'}
 
-  use 'andweeb/presence.nvim'   -- discord rich presence
+  use "lukas-reineke/indent-blankline.nvim"
 
-  -- javascript  
-  use { 'HerringtonDarkholme/yats.vim', ft = 'typescript' }
-  use 'othree/javascript-libraries-syntax.vim'
-  --use 'epilande/vim-es2015-snippets' -- Es6 snippets
-  --use 'epilande/vim-react-snippets' -- React snippets
-  --use 'mlaursen/vim-react-snippets' -- React snippets
-  --use 'SirVer/ultisnips' -- Ultisnips
-  --[[ use 'maxmellon/vim-jsx-pretty' -- JSX Highlight ]]
+  use {
+  'andweeb/presence.nvim',
+  config = function()
+      require('presence'):setup()
+    end
+  }   -- discord rich presence
+
   use {'prettier/vim-prettier',
     run = 'yarn install',
   } -- prettier
 
-  use { "windwp/nvim-autopairs" }  -- autopairs
-
   --rust
   use 'rust-lang/rust.vim'
 
-  -- nvim tree | web devicons
+  -- nvim tree
   use {
   'kyazdani42/nvim-tree.lua',
   requires = {
-    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    'kyazdani42/nvim-web-devicons',
   },
-  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  tag = 'nightly'
 }
 
   -- telescope
 use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.0',
--- or                            , branch = '0.1.x',
+  'nvim-telescope/telescope.nvim',
+    tag = '0.1.0',
+    cmd='Telescope',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
 
   -- treesitter
      use {
-       'nvim-treesitter/nvim-treesitter'
-   }
+       'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        event="BufRead",
+requires = {{'JoosepAlviste/nvim-ts-context-commentstring', after='nvim-treesitter'}},
+        config = function ()
+           require('configs.treesitter')
+           require('configs.blankline')
+           require('configs.comment')
+        end
+     }
+
+-- autopairs
+use {
+  'windwp/nvim-autopairs',
+   after = 'nvim-cmp',
+   config = function ()
+      require 'configs.autopairs'
+   end
+}
+
+  -- startup screen
+use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+}
 
 end)
