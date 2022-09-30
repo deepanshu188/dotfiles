@@ -14,12 +14,12 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
 keymap("x", "J", ":move '>+1<CR>gv-gv", silent)
 
 -- git conflict
-keymap('n', 'co', '<Plug>(git-conflict-ours)')
-keymap('n', 'ct', '<Plug>(git-conflict-theirs)')
-keymap('n', 'cb', '<Plug>(git-conflict-both)')
-keymap('n', 'c0', '<Plug>(git-conflict-none)')
-keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
-keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
+keymap("n", "co", "<Plug>(git-conflict-ours)")
+keymap("n", "ct", "<Plug>(git-conflict-theirs)")
+keymap("n", "cb", "<Plug>(git-conflict-both)")
+keymap("n", "c0", "<Plug>(git-conflict-none)")
+keymap("n", "]x", "<Plug>(git-conflict-prev-conflict)")
+keymap("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
 -- tree
-keymap('n', "<C-n>", "<cmd> NvimTreeToggle <CR>")
+keymap("n", "<C-n>", "<cmd> NvimTreeToggle <CR>")
