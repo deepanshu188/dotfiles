@@ -7,14 +7,14 @@ end
 nvimtree.setup({
   disable_netrw = true,
   hijack_netrw = true,
-hijack_cursor = true,
+  hijack_cursor = true,
   update_cwd = false,
 open_on_setup = false,
-open_on_setup_file = false,
-actions = {
-open_file = {
-resize_window = true,
-},
+  open_on_setup_file = false,
+  actions = {
+  open_file = {
+  resize_window = true,
+  },
 },
 view = {
     adaptive_size = true,
@@ -23,11 +23,11 @@ view = {
     hide_root_folder = true,
     },
 update_focused_file = {
-enable = true,
-update_cwd = false,
+  enable = true,
+  update_cwd = false,
 },
 filters = {
-dotfiles = false,
+  dotfiles = false,
 },
 git = {
   enable = true,

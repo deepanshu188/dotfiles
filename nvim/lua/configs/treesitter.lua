@@ -5,10 +5,11 @@ if not present then
 end
 
 ts.setup {
-ensure_installed = { "c", "lua", "rust", "bash", "typescript", "tsx", "javascript", "css", "html", "go", "gomod", "json", "python" },
-    highlight = {
+auto_install = true,
+  highlight = {
       enable = true,
-      disable = { "ruby" }
+      disable = { "ruby" },
+      additional_vim_regex_highlighting = false,
     },
     indent = {
         enable = true

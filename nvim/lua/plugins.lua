@@ -43,8 +43,13 @@ return packer.startup(function()
 
   -- common
 
-  use 'vim-airline/vim-airline' -- powerline
-  use 'vim-airline/vim-airline-themes'
+use {
+    'nvim-lualine/lualine.nvim',
+    config = function ()
+      require 'configs.lualine'
+    end
+  }
+
   use 'norcalli/nvim-colorizer.lua' -- colorizer
 
   use "lukas-reineke/indent-blankline.nvim"
