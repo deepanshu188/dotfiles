@@ -8,9 +8,10 @@ return packer.startup(function()
 	use("wbthomason/packer.nvim")
 
 	-- theme
-	use("folke/tokyonight.nvim")
-	use("ellisonleao/gruvbox.nvim")
-	use("elvessousa/sobrio")
+	--[[ use("folke/tokyonight.nvim") ]]
+	--[[ use("ellisonleao/gruvbox.nvim") ]]
+	--[[ use("elvessousa/sobrio") ]]
+	use({ "kartikp10/noctis.nvim", requires = { "rktjmp/lush.nvim" } })
 
 	-- lsp
 	use({ "williamboman/mason.nvim" })

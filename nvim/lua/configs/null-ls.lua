@@ -13,10 +13,9 @@ local sources = {
 	-- Lua
 	b.formatting.stylua,
 
-	b.completion.spell,
-
 	-- JS
 	b.formatting.prettierd,
+	b.diagnostics.eslint_d,
 
 	-- Python
 	b.formatting.black,
@@ -27,7 +26,6 @@ local sources = {
 
 	-- Shell
 	b.formatting.shfmt,
-	b.diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
 }
 
 null_ls.setup({
@@ -40,7 +38,7 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.formatting_sync()
+					vim.lsp.buf.format()
 				end,
 			})
 		end

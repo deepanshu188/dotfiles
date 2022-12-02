@@ -7,6 +7,7 @@ local cmd = vim.cmd
 g.mapleader = " "
 
 -- treesitter folding
+o.foldlevel = 20
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -78,6 +79,6 @@ o.directory = "/.vim/tmp/swap//" -- swap files
 
 -- Colorschemes
 
---o.background = 'dark'
+--o.background = "dark"
 --g.material_style = "palenight"
-cmd([[colorscheme sobrio]])
+cmd([[colorscheme noctis]])
