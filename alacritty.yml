@@ -15,7 +15,7 @@ window:
 font:
   normal:
     family: Fira Code
-  size: 10
+  size: 13
 colors:
   primary:
     background: '#282a36'
@@ -34,7 +34,7 @@ colors:
     focused_match:
       foreground: '#44475a'
       background: '#ffb86c'
-    bar:
+    footer_bar:
       background: '#282a36'
       foreground: '#f8f8f2'
   hints:
