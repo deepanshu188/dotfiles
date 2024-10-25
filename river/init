@@ -32,11 +32,11 @@ riverctl map normal Super Z spawn "zen-browser"
 # Zen Browser Incognito
 riverctl map normal Super I spawn "zen-browser -private-window"
 
-# PCManFM
-riverctl map normal Super F spawn "pcmanfm"
-
 # Joshuto
-riverctl map normal Super J spawn "joshuto"
+riverctl map normal Super J spawn "foot -e joshuto"
+
+#screenshot
+riverctl map normal Super S spawn "grim && notify-send 'screenshot taken'"
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
