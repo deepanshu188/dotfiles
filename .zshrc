@@ -19,7 +19,6 @@ source $ZSH/oh-my-zsh.sh
 
 # alias
 alias tsm="transmission-cli"
-alias rt="rtorrent"
 alias ..="cd .."
 alias l="ls -lah"
 alias e="eza -lah"
