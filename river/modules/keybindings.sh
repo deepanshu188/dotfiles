@@ -3,12 +3,17 @@
 # Application launchers
 riverctl map normal Super Return spawn foot
 riverctl map normal Super Q close
-riverctl map normal Super+Shift E exit
+# riverctl map normal Super+Shift E exit
+riverctl map normal Super+Shift E spawn "~/.config/river/scripts/powermenu"
 riverctl map normal Super D spawn fuzzel
 riverctl map normal Super Z spawn zen-browser
 riverctl map normal Super I spawn zen-browser -private-window
 riverctl map normal Super J spawn foot -e joshuto
 riverctl map normal Super S spawn "grim && notify-send 'screenshot taken'"
+riverctl map normal Super L spawn "swaylock-fancy -e -K -p 10 -f Monaco-Regular"
+# cliphist keybindings
+riverctl map normal Super V spawn "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+riverctl map normal Super+Shift D spawn "cliphist list | fuzzel --dmenu | cliphist delete"
 
 # View management
 riverctl map normal Super J focus-view next

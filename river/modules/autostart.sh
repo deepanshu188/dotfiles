@@ -9,4 +9,7 @@ disown
 easyeffects --gapplication-service &
 /usr/bin/dunst &
 nm-applet --indicator &
-swayidle -w timeout 300 ~/.config/system_scripts/wayland_session_lock &
+# swayidle -w timeout 300 ~/.config/system_scripts/wayland_session_lock &
+wl-paste --type text --watch cliphist store &
+wl-paste --type image --watch cliphist store &
+swayidle -w timeout 300 'swaylock -f -c 000000' before-sleep 'swaylock -f -c 000000' &

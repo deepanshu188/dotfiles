@@ -1,0 +1,13 @@
+#!/bin/bash
+
+options=" Lock\n󰍃 Logout\n Reboot\n Shutdown"
+
+chosen=$(echo -e "$options" | fuzzel -d -p "Power Menu: ")
+
+case "$chosen" in
+" Lock") riverctl spawn swaylock ;;
+"󰍃 Logout") riverctl exit ;;
+" Reboot") systemctl reboot ;;
+" Shutdown") systemctl poweroff ;;
+*) exit 1 ;;
+esac
